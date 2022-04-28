@@ -11,12 +11,12 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "CUSTOMERS")
+@Table(name = "LEGIT_CHECKERS")
 @Data
-public class Customer {
+public class LegitChecker {
 
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  @Column(name = "customer_id")
+  @Column(name = "legit_checker_id")
   @Id
   private int id;
 
@@ -26,8 +26,10 @@ public class Customer {
   private String email;
   @Column(name = "password")
   private String password;
+  @Column(name = "rating")
+  private Double rating;
 
-  @OneToMany(mappedBy = "customer")
+  @OneToMany(mappedBy = "legitChecker")
   private Set<Order> orders;
 
 

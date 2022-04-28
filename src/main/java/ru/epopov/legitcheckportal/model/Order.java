@@ -15,7 +15,7 @@ import lombok.Data;
 @Entity
 @Table(name = "ORDERS")
 @Data
-public class PriceCheckOrder {
+public class Order {
 
   @GeneratedValue(strategy = GenerationType.SEQUENCE)
   @Column(name = "order_id")
@@ -28,7 +28,7 @@ public class PriceCheckOrder {
 
   @ManyToOne
   @JoinColumn(name = "price_checker_id")
-  PriceChecker priceChecker;
+  LegitChecker legitChecker;
 
   byte[] photoToVerify;
 
