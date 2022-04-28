@@ -1,4 +1,4 @@
-package ru.epopov.legitcheckportal.service;
+package ru.epopov.legitcheckportal.services;
 
 import java.util.Set;
 
