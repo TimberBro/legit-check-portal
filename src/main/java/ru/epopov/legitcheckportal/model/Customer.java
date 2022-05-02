@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class Customer {
 
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "customer_id")
   @Id
   private int id;

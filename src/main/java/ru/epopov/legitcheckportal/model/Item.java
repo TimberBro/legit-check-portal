@@ -16,13 +16,15 @@ import lombok.Data;
 @Data
 public class Item {
 
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "item_id")
   @Id
   int id;
 
+  // Which currency? By default, might be USD
   @Column(name = "item_price")
   private BigInteger itemPrice;
+  // Should it be stored here or in Order?
   @Column(name = "size")
   private String sizeTag;
   @Column(name = "name")

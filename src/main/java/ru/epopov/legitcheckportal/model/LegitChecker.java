@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class LegitChecker {
 
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "legit_checker_id")
   @Id
   private int id;
@@ -27,7 +27,7 @@ public class LegitChecker {
   @Column(name = "password")
   private String password;
   @Column(name = "rating")
-  private Double rating;
+  private Double rating = 0.0;
 
   @OneToMany(mappedBy = "legitChecker")
   private Set<Order> orders;
