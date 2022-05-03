@@ -1,5 +1,10 @@
 package ru.epopov.legitcheckportal.services.springdatajpa;
 
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.util.HashSet;
@@ -26,8 +31,10 @@ public class ItemServiceImpl implements ItemService {
 
   @Override
   public Item findById(Integer integer) {
-    return itemRepository.findById(integer)
-        .orElseThrow(() -> new EntityNotFoundException("Item with id=" + integer + " was not found."));
+    return itemRepository
+        .findById(integer)
+        .orElseThrow(
+            () -> new EntityNotFoundException("Item with id=" + integer + " was not found."));
   }
 
   @Override
@@ -58,16 +65,24 @@ public class ItemServiceImpl implements ItemService {
   @Override
   public Item updateById(int id, Item item) {
     Item itemToReplace = this.findById(id);
-    itemToReplace.setItemPrice(item.getItemPrice());
-    itemToReplace.setSizeTag(item.getSizeTag());
-    itemToReplace.setItemName(item.getItemName());
-    itemToReplace.setReleaseDate(item.getReleaseDate());
-    itemToReplace.setStockKeepingUnit(item.getStockKeepingUnit());
-    itemToReplace.setDescription(item.getDescription());
-    itemToReplace.setColorName(item.getColorName());
-    itemToReplace.setCategories(item.getCategories());
-    itemToReplace.setItemPhoto(item.getItemPhoto());
-    itemToReplace.setManufacture(item.getManufacture());
+    Field[] fields = Item.class.getDeclaredFields();
+    for (Field field : fields) {
+      if (!field.getName().equals("id")) {
+        PropertyDescriptor descriptor = null;
+        try {
+          descriptor = new PropertyDescriptor(field.getName(), Item.class);
+        } catch (IntrospectionException e) {
+          throw new RuntimeException(e);
+        }
+        Method getter = descriptor.getReadMethod();
+        Method setter = descriptor.getWriteMethod();
+        try {
+          setter.invoke(itemToReplace, getter.invoke(item));
+        } catch (IllegalAccessException | InvocationTargetException e) {
+          throw new RuntimeException(e);
+        }
+      }
+    }
     return this.save(itemToReplace);
   }
 }

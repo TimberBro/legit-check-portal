@@ -1,9 +1,6 @@
 package ru.epopov.legitcheckportal.controllers;
 
-import java.lang.reflect.Field;
-import java.util.Optional;
 import java.util.Set;
-import javax.persistence.EntityNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;

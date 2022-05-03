@@ -1,7 +1,6 @@
 package ru.epopov.legitcheckportal.model;
 
 import java.math.BigInteger;
-
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,6 +40,11 @@ public class Item {
   // Might want to create one more entity for categories
   @Column(name = "categories")
   private String categories;
+  /*
+  To store photos, I'll use folder on same machine and keep path to image on local disk
+  In the future photos should be uploaded to cloud-object storage like s3 or ceph
+  and keep URLs to images.
+   */
   @Column(name = "item_photo")
   private byte[] itemPhoto;
   @Column(name = "manufacture")
