@@ -61,7 +61,6 @@ public class ItemServiceImpl implements ItemService {
     itemRepository.deleteById(integer);
   }
 
-  // This is not a clever solution to update fields
   @Override
   public Item updateById(int id, Item item) {
     Item itemToReplace = this.findById(id);

@@ -54,7 +54,6 @@ class ItemServiceImplTest {
     item2.setStockKeepingUnit("GW0296");
     item2.setSizeTag("US7");
 
-
     //when
     when(itemRepository.save(any())).thenReturn(item2);
     when(itemRepository.findById(anyInt())).thenReturn(Optional.of(item1));
