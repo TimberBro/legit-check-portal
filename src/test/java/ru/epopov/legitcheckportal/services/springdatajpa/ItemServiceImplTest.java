@@ -31,6 +31,7 @@ class ItemServiceImplTest {
     itemService = new ItemServiceImpl(itemRepository);
   }
 
+  // TODO: 03.05.2022 Write test for PUT method, when id does not exist
   @Test
   void updateByIdTest() {
     //given
