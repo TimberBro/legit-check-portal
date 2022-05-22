@@ -2,6 +2,8 @@ package ru.epopov.legitcheckportal.services.springdatajpa;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.beans.IntrospectionException;
@@ -13,6 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import ru.epopov.legitcheckportal.model.Item;
 import ru.epopov.legitcheckportal.repositories.ItemRepository;
@@ -31,7 +34,29 @@ class ItemServiceImplTest {
     itemService = new ItemServiceImpl(itemRepository);
   }
 
-  // TODO: 03.05.2022 Write test for PUT method, when id does not exist
+  @Test
+  void createIfNotExist() {
+    Item item1 = new Item();
+    item1.setItemName("Jordan Air 1");
+    item1.setItemPrice(BigInteger.valueOf(170));
+    item1.setColorName("University Blue");
+    item1.setCategories("High;Jordan");
+    item1.setManufacture("Jordan");
+    item1.setReleaseDate(Date.valueOf("2021-06-03"));
+    item1.setStockKeepingUnit("555088-134");
+    item1.setSizeTag("US11");
+
+    when(itemRepository.save(any())).thenReturn(item1);
+    when(itemRepository.findById(anyInt())).thenReturn(Optional.empty());
+
+    // 14 is a magic number. Maybe I'll replace it with constant variable.
+    itemService.updateById(14, item1);
+
+    //then
+    verify(itemRepository, times(1)).findById(anyInt());
+    verify(itemRepository, times(1)).save(any());
+  }
+
   @Test
   void updateByIdTest() {
     //given

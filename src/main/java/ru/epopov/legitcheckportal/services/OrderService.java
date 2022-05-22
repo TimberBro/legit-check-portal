@@ -1,5 +1,7 @@
 package ru.epopov.legitcheckportal.services;
 
-public interface OrderService extends CrudService<OrderService, Integer> {
+import ru.epopov.legitcheckportal.model.Order;
 
+public interface OrderService extends CrudService<Order, Integer> {
+  Order save(Order object);
 }
