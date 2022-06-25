@@ -27,13 +27,13 @@ public class Order {
   Customer customer;
 
   @ManyToOne
-  @JoinColumn(name = "price_checker_id")
+  @JoinColumn(name = "legit_checker_id")
   LegitChecker legitChecker;
 
-  byte[] photoToVerify;
+  String verifyPhotoPath;
 
   @ManyToOne
-  Item itemToVerify;
+  Item verifyItem;
 
   @Enumerated(EnumType.STRING)
   Status status;

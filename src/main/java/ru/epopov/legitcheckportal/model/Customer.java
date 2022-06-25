@@ -10,6 +10,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
 
+// TODO: 24.06.2022 Merge customers and legitcheckers:
+//  1) Might be a good solution to store them in one table, and add new column ROLE.
+//  2) Try to use abstract class for entity and then extend it to customer and legitchecker
+//  Also, need to use liquibase to control database migrations
 @Entity
 @Table(name = "CUSTOMERS")
 @Data

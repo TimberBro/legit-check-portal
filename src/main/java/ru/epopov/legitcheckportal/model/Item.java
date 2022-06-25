@@ -46,7 +46,7 @@ public class Item {
   and keep URLs to images.
    */
   @Column(name = "item_photo")
-  private byte[] itemPhoto;
+  private String itemPhotoPath;
   @Column(name = "manufacture")
   private String manufacture;
 }

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+  <changeSet id="1_User_Table" author="Epopov">
+    <createTable tableName="USERS">
+      <column name="USER_ID" type="int">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="EMAIL" type="varchar"/>
+      <column name="password" type="varchar"/>
+      <column name="user_name" type="varchar"/>
+      <column name="role_id" type="varchar"/>
+      <column name="rating" type="double"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1_Items_Table" author="Epopov">
+    <createTable tableName="ITEMS">
+      <column name="item_id" type="int">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="categories" type="varchar"/>
+      <column name="color_name" type="varchar"/>
+      <column name="description" type="varchar"/>
+      <column name="name" type="varchar"/>
+      <column name="item_photo" type="varchar"/>
+      <column name="item_price" type="decimal(19,2)"/>
+      <column name="manufacture" type="varchar"/>
+      <column name="release_date" type="date"/>
+      <column name="size" type="varchar"/>
+      <column name="sku" type="varchar"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="1_Orders_Table" author="Epopov">
+    <createTable tableName="orders">
+      <column name="order_id" type="int">
+        <constraints primaryKey="true"/>
+      </column>
+      <column name="verify_photo_path" type="varchar"/>
+      <column name="verify_item_id" type="int"/>
+      <column name="legit_checker_id" type="int"/>
+      <column name="customer_id" type="int"/>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="orders" baseColumnNames="verify_item_id"
+      constraintName="FK_Item_Id"
+      referencedTableName="items" referencedColumnNames="item_id"/>
+    <createIndex tableName="orders" indexName="IDX_CUSTOMER_ID">
+      <column name="customer_id"/>
+    </createIndex>
+    <createIndex tableName="orders" indexName="IDX_LEGIT_CHECKER_ID">
+      <column name="legit_checker_id"/>
+    </createIndex>
+  </changeSet>
+</databaseChangeLog>
