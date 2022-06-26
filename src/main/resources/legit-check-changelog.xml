@@ -13,7 +13,9 @@
       <column name="EMAIL" type="varchar"/>
       <column name="password" type="varchar"/>
       <column name="user_name" type="varchar"/>
-      <column name="role_id" type="varchar"/>
+      <!--For now will use CUSTOMER/LEGITCHECKER/ADMIN roles as strings-->
+      <!--Then might create a table for roles and table for user-role assignments-->
+      <column name="role" type="varchar"/>
       <column name="rating" type="double"/>
       <column name="dtype" type="varchar"/>
     </createTable>
