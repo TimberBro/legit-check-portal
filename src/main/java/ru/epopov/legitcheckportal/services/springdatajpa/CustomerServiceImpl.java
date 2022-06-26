@@ -3,10 +3,12 @@ package ru.epopov.legitcheckportal.services.springdatajpa;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
 import ru.epopov.legitcheckportal.model.Customer;
 import ru.epopov.legitcheckportal.repositories.CustomerRepository;
 import ru.epopov.legitcheckportal.services.CustomerService;
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
   private final CustomerRepository customerRepository;

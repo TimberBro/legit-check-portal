@@ -2,11 +2,13 @@ package ru.epopov.legitcheckportal.services.springdatajpa;
 
 import java.util.HashSet;
 import java.util.Set;
+import org.springframework.stereotype.Service;
 import ru.epopov.legitcheckportal.model.LegitChecker;
 import ru.epopov.legitcheckportal.repositories.LegitCheckerRepository;
-import ru.epopov.legitcheckportal.services.LegitCheckerService;
 
-public class LegitCheckerServiceImpl implements LegitCheckerService {
+@Service
+public class LegitCheckerServiceImpl implements
+    ru.epopov.legitcheckportal.services.LegitCheckerService {
 
   private final LegitCheckerRepository legitCheckerRepository;
 

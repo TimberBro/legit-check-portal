@@ -7,7 +7,7 @@
 
   <changeSet id="1_User_Table" author="Epopov">
     <createTable tableName="USERS">
-      <column name="USER_ID" type="int">
+      <column name="USER_ID" type="bigint">
         <constraints primaryKey="true"/>
       </column>
       <column name="EMAIL" type="varchar"/>
@@ -15,12 +15,15 @@
       <column name="user_name" type="varchar"/>
       <column name="role_id" type="varchar"/>
       <column name="rating" type="double"/>
+      <column name="dtype" type="varchar"/>
     </createTable>
+    <addAutoIncrement tableName="users" columnName="user_id" incrementBy="1"
+      columnDataType="bigint"/>
   </changeSet>
 
   <changeSet id="1_Items_Table" author="Epopov">
     <createTable tableName="ITEMS">
-      <column name="item_id" type="int">
+      <column name="item_id" type="bigint">
         <constraints primaryKey="true"/>
       </column>
       <column name="categories" type="varchar"/>
@@ -34,11 +37,13 @@
       <column name="size" type="varchar"/>
       <column name="sku" type="varchar"/>
     </createTable>
+    <addAutoIncrement tableName="items" columnName="item_id" incrementBy="1"
+      columnDataType="bigint"/>
   </changeSet>
 
   <changeSet id="1_Orders_Table" author="Epopov">
     <createTable tableName="orders">
-      <column name="order_id" type="int">
+      <column name="order_id" type="bigint">
         <constraints primaryKey="true"/>
       </column>
       <column name="verify_photo_path" type="varchar"/>
@@ -55,5 +60,7 @@
     <createIndex tableName="orders" indexName="IDX_LEGIT_CHECKER_ID">
       <column name="legit_checker_id"/>
     </createIndex>
+    <addAutoIncrement tableName="orders" columnName="order_id" incrementBy="1"
+      columnDataType="bigint"/>
   </changeSet>
 </databaseChangeLog>

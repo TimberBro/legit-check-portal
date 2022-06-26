@@ -3,10 +3,12 @@ package ru.epopov.legitcheckportal.services.springdatajpa;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
 import ru.epopov.legitcheckportal.model.Order;
 import ru.epopov.legitcheckportal.repositories.OrderRepository;
 import ru.epopov.legitcheckportal.services.OrderService;
 
+@Service
 public class OrderServiceImpl implements OrderService {
 
   private final OrderRepository orderRepository;
