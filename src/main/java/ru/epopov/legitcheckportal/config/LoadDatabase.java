@@ -34,9 +34,7 @@ class LoadDatabase {
 
   @Bean
   CommandLineRunner initDatabase() {
-    return args -> {
-      loadData();
-    };
+    return args -> loadData();
   }
 
   private void loadData() {
@@ -45,10 +43,12 @@ class LoadDatabase {
     legitChecker1.setEmail("legitchecker1@gmail.com");
     legitChecker1.setUserName("legitchecker1");
     legitChecker1.setPassword("123");
+    legitChecker1.setEnabled(true);
     LegitChecker legitChecker2 = new LegitChecker();
     legitChecker2.setEmail("legitchecker2@gmail.com");
     legitChecker2.setUserName("legitchecker2");
     legitChecker2.setPassword("345");
+    legitChecker2.setEnabled(true);
     log.info("Preloading " + legitCheckerService.save(legitChecker1));
     log.info("Preloading " + legitCheckerService.save(legitChecker2));
 
@@ -78,11 +78,13 @@ class LoadDatabase {
     customer1.setEmail("customer1@gmail.com");
     customer1.setUserName("customer1");
     customer1.setPassword("678");
+    customer1.setEnabled(true);
     log.info("Preloading " + customerService.save(customer1));
     Customer customer2 = new Customer();
     customer2.setEmail("customer2@gmail.com");
     customer2.setUserName("customer2");
     customer2.setPassword("890");
+    customer2.setEnabled(true);
     log.info("Preloading " + customerService.save(customer2));
   }
 }

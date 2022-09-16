@@ -2,24 +2,23 @@
 <databaseChangeLog
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog dbchangelog-latest.xsd">
 
   <changeSet id="1_User_Table" author="Epopov">
     <createTable tableName="USERS">
-      <column name="USER_ID" type="bigint">
+      <column name="id" type="bigint">
         <constraints primaryKey="true"/>
       </column>
-      <column name="EMAIL" type="varchar"/>
+      <column name="email" type="varchar"/>
       <column name="password" type="varchar"/>
-      <column name="user_name" type="varchar"/>
+      <column name="username" type="varchar"/>
       <!--For now will use CUSTOMER/LEGITCHECKER/ADMIN roles as strings-->
       <!--Then might create a table for roles and table for user-role assignments-->
       <column name="role" type="varchar"/>
       <column name="rating" type="double"/>
       <column name="dtype" type="varchar"/>
     </createTable>
-    <addAutoIncrement tableName="users" columnName="user_id" incrementBy="1"
+    <addAutoIncrement tableName="users" columnName="id" incrementBy="1"
       columnDataType="bigint"/>
   </changeSet>
 
@@ -64,5 +63,16 @@
     </createIndex>
     <addAutoIncrement tableName="orders" columnName="order_id" incrementBy="1"
       columnDataType="bigint"/>
+  </changeSet>
+  <changeSet id="2_spring_security_update" author="Epopov">
+    <addColumn tableName="users">
+      <column name="enabled" type="boolean"/>
+    </addColumn>
+    <addNotNullConstraint
+      columnDataType="boolean"
+      columnName="enabled"
+      defaultNullValue="true"
+      tableName="users"
+      validate="true"/>
   </changeSet>
 </databaseChangeLog>

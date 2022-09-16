@@ -14,15 +14,17 @@ import lombok.Data;
 public abstract class AbstractUser {
 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
+  @Column(name = "id")
   @Id
   private int id;
 
-  @Column(name = "user_name")
+  @Column(name = "username")
   private String userName;
   @Column(name = "email")
   private String email;
   @Column(name = "password")
   private String password;
+  @Column(name = "enabled")
+  private Boolean enabled;
 
 }
