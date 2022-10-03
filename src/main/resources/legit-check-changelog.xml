@@ -2,11 +2,12 @@
 <databaseChangeLog
   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog dbchangelog-latest.xsd">
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
   <changeSet id="1_User_Table" author="Epopov">
     <createTable tableName="USERS">
-      <column name="id" type="bigint">
+      <column name="id" type="int" autoIncrement="true">
         <constraints primaryKey="true"/>
       </column>
       <column name="email" type="varchar"/>
@@ -18,13 +19,11 @@
       <column name="rating" type="double"/>
       <column name="dtype" type="varchar"/>
     </createTable>
-    <addAutoIncrement tableName="users" columnName="id" incrementBy="1"
-      columnDataType="bigint"/>
   </changeSet>
 
   <changeSet id="1_Items_Table" author="Epopov">
     <createTable tableName="ITEMS">
-      <column name="item_id" type="bigint">
+      <column name="item_id" type="int" autoIncrement="true">
         <constraints primaryKey="true"/>
       </column>
       <column name="categories" type="varchar"/>
@@ -38,19 +37,18 @@
       <column name="size" type="varchar"/>
       <column name="sku" type="varchar"/>
     </createTable>
-    <addAutoIncrement tableName="items" columnName="item_id" incrementBy="1"
-      columnDataType="bigint"/>
   </changeSet>
 
   <changeSet id="1_Orders_Table" author="Epopov">
     <createTable tableName="orders">
-      <column name="order_id" type="bigint">
+      <column name="order_id" type="int" autoIncrement="true">
         <constraints primaryKey="true"/>
       </column>
       <column name="verify_photo_path" type="varchar"/>
       <column name="verify_item_id" type="int"/>
       <column name="legit_checker_id" type="int"/>
       <column name="customer_id" type="int"/>
+      <column name="status" type="varchar"/>
     </createTable>
     <addForeignKeyConstraint baseTableName="orders" baseColumnNames="verify_item_id"
       constraintName="FK_Item_Id"
@@ -61,8 +59,6 @@
     <createIndex tableName="orders" indexName="IDX_LEGIT_CHECKER_ID">
       <column name="legit_checker_id"/>
     </createIndex>
-    <addAutoIncrement tableName="orders" columnName="order_id" incrementBy="1"
-      columnDataType="bigint"/>
   </changeSet>
   <changeSet id="2_spring_security_update" author="Epopov">
     <addColumn tableName="users">

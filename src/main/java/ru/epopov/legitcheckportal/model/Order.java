@@ -33,8 +33,10 @@ public class Order {
   String verifyPhotoPath;
 
   @ManyToOne
+  @JoinColumn(name = "verify_item_id")
   Item verifyItem;
 
   @Enumerated(EnumType.STRING)
+      @Column(name = "status")
   Status status;
 }

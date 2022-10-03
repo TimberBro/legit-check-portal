@@ -15,6 +15,7 @@ import ru.epopov.legitcheckportal.services.ItemService;
 import ru.epopov.legitcheckportal.services.LegitCheckerService;
 import ru.epopov.legitcheckportal.services.OrderService;
 
+// TODO: 02.10.2022 Change it to cmdrunner
 @Configuration
 class LoadDatabase {
 
