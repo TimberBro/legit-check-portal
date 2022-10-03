@@ -5,8 +5,7 @@ import java.sql.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import ru.epopov.legitcheckportal.model.Customer;
 import ru.epopov.legitcheckportal.model.Item;
 import ru.epopov.legitcheckportal.model.LegitChecker;
@@ -15,15 +14,14 @@ import ru.epopov.legitcheckportal.services.ItemService;
 import ru.epopov.legitcheckportal.services.LegitCheckerService;
 import ru.epopov.legitcheckportal.services.OrderService;
 
-// TODO: 02.10.2022 Change it to cmdrunner
-@Configuration
-class LoadDatabase {
+@Component
+class LoadDatabase implements CommandLineRunner {
 
+  private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
   private final LegitCheckerService legitCheckerService;
   private final ItemService itemService;
   private final OrderService orderService;
   private final CustomerService customerService;
-  private static final Logger log = LoggerFactory.getLogger(LoadDatabase.class);
 
   LoadDatabase(LegitCheckerService legitCheckerService, ItemService itemService,
       OrderService orderService, CustomerService customerService) {
@@ -33,12 +31,8 @@ class LoadDatabase {
     this.customerService = customerService;
   }
 
-  @Bean
-  CommandLineRunner initDatabase() {
-    return args -> loadData();
-  }
-
-  private void loadData() {
+  @Override
+  public void run(String... args) throws Exception {
     // Create some legit checkers
     LegitChecker legitChecker1 = new LegitChecker();
     legitChecker1.setEmail("legitchecker1@gmail.com");
