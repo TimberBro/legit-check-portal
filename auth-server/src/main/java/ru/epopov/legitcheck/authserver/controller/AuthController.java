@@ -1,4 +1,4 @@
-package ru.epopov.legitcheck.authserver;
+package ru.epopov.legitcheck.authserver.controller;
 
 import java.util.Optional;
 import java.util.UUID;
