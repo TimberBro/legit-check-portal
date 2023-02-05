@@ -23,7 +23,11 @@ public class AuthController {
 
   @PostMapping("/add")
   public UUID addUser(@RequestBody User user) {
-    return userService.addUser(user);
+    try {
+      return userService.addUser(user);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @PostMapping("/auth")

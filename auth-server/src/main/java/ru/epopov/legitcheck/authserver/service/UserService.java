@@ -25,10 +25,16 @@ public class UserService {
   }
 
   public UUID addUser(User user) {
-    user.setUuid(UUID.randomUUID());
-    user.setPassword(passwordEncoder.encode(user.getPassword()));
-    User save = userRepository.save(user);
-    return save.getUuid();
+    Optional<User> optionalUser = this.findUserByUserName(user.getUsername());
+
+    if (optionalUser.isEmpty()) {
+      user.setUuid(UUID.randomUUID());
+      user.setPassword(passwordEncoder.encode(user.getPassword()));
+      User save = userRepository.save(user);
+      return save.getUuid();
+    } else {
+      throw new IllegalArgumentException("The username is already taken");
+    }
   }
 
   public boolean authUser(User user) {
