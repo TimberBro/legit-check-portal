@@ -28,15 +28,10 @@ public class AuthController {
 
   @PostMapping("/auth")
   public ResponseEntity<String> authUser(@RequestBody User user) {
-    Optional<User> foundUser = userService.findUserByUserName(user.getUsername());
-
-    if (foundUser.isPresent()) {
-      if (foundUser.get().getPassword().equals(user.getPassword())) {
-        return ResponseEntity.ok().body("Ok");
-      } else {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not authorized");
-      }
+    if (userService.authUser(user)) {
+      return ResponseEntity.ok().body("Ok");
+    } else {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not authorized");
     }
-    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Not authorized");
   }
 }
