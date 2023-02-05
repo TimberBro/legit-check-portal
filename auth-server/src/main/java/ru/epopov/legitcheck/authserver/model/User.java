@@ -4,12 +4,14 @@ import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import org.hibernate.annotations.Type;
 
 @Entity(name = "users")
 public class User {
 
   @Id
   @Column(name = "id")
+  @Type(type = "uuid-char")
   private UUID uuid;
 
   @Column(name = "username")
